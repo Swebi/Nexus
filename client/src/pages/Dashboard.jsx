@@ -119,7 +119,7 @@ const LayoutFlow = () => {
           ""
         ) : (
           <Panel className="flex flex-col justify-center items-center w-screen h-screen">
-            <div className="w-[65vw] h-[55vh] mb-[5vh] flex flex-col gap-6 justify-center items-center bg-white border rounded-2xl shadow-2xl">
+            <div className="w-[65vw] h-[75vh] mb-[5vh] flex flex-col gap-6 justify-center items-center bg-white border rounded-2xl shadow-2xl">
               <h1 className="text-7xl font-semibold">Nexus</h1>
               <div className="flex gap-3 justify-start items-center w-1/2">
                 <h1>Path</h1>
