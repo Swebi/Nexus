@@ -4,6 +4,8 @@ import {
   ReactFlow,
   ReactFlowProvider,
   Panel,
+  Background,
+  Controls,
   useNodesState,
   useEdgesState,
   useReactFlow,
@@ -70,10 +72,22 @@ const LayoutFlow = () => {
         onEdgesChange={onEdgesChange}
         fitView
       >
-        <Panel position="top-right">
-          <button onClick={() => onLayout("TB")}>vertical layout</button>
-          <button onClick={() => onLayout("LR")}>horizontal layout</button>
+        <Panel position="top-right" className="flex gap-2">
+          <button
+            onClick={() => onLayout("TB")}
+            className="border p-2 px-3 rounded-xl"
+          >
+            vertical layout
+          </button>
+          <button
+            onClick={() => onLayout("LR")}
+            className="border p-2 px-3 rounded-xl"
+          >
+            horizontal layout
+          </button>
         </Panel>
+        <Background />
+        <Controls />
       </ReactFlow>
     </div>
   );
