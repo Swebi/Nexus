@@ -40,6 +40,5 @@ export const generateGraphData = (
     }
   }
 
-  console.log(nodes, edges);
   return { nodes, edges };
 };

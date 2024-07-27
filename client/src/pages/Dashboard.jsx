@@ -15,6 +15,7 @@ import { initialNodes, initialEdges } from "../data/nodes-edges.js";
 import "@xyflow/react/dist/style.css";
 import { getLayoutedElements } from "../utils/getLayoutedElements.js";
 import { generateGraphData } from "../utils/generateGraphData.js";
+import { saveLayout } from "../utils/saveLayout.js";
 const LayoutFlow = () => {
   const { fitView } = useReactFlow();
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -44,7 +45,6 @@ const LayoutFlow = () => {
 
   const onLayout = useCallback(
     (direction) => {
-      console.log(nodes);
       const layouted = getLayoutedElements(nodes, edges, { direction });
 
       setNodes([...layouted.nodes]);
@@ -70,21 +70,27 @@ const LayoutFlow = () => {
         onEdgesChange={onEdgesChange}
         fitView
       >
-        <Panel position="top-right" className="flex gap-2  bg-white p-5">
+        <Panel position="top-right" className="flex gap-3 ">
           <button
             onClick={() => onLayout("TB")}
-            className="border p-2 px-3 rounded-md"
+            className="bg-white rounded-lg border p-1 px-4 shadow-md"
           >
             Vertical
           </button>
           <button
             onClick={() => onLayout("LR")}
-            className="border p-2 px-3 rounded-md"
+            className="bg-white rounded-lg border p-1 px-4 shadow-md"
           >
             Horizontal
           </button>
-        </Panel>
 
+          <button
+            onClick={() => saveLayout({ nodes, edges })}
+            className="bg-white rounded-lg border p-1 px-4 shadow-md"
+          >
+            Save
+          </button>
+        </Panel>
         <Panel
           position="bottom-right"
           className="flex flex-col gap-4 border bg-white p-4 rounded-lg"
