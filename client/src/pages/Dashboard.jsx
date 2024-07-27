@@ -26,6 +26,33 @@ const LayoutFlow = () => {
   const [path, setPath] = useState("");
   const [ignoreFolders, setIgnoreFolders] = useState("");
 
+  const [file, setFile] = useState(null);
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleFileUpload = () => {
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const content = e.target.result;
+        try {
+          const json = JSON.parse(content);
+          if (json.nodes && json.edges) {
+            setNodes(json.nodes);
+            setEdges(json.edges);
+          } else {
+            alert("Invalid JSON structure");
+          }
+        } catch (error) {
+          alert("Error parsing JSON");
+        }
+      };
+      reader.readAsText(file);
+    }
+  };
+
   const fetchNodes = async () => {
     try {
       const response = await axios.post(
@@ -127,6 +154,18 @@ const LayoutFlow = () => {
                 }}
               >
                 Start
+              </button>
+              <input type="file" onChange={handleFileChange} accept=".json" />
+
+              <button
+                className="text-2xl font-normal border rounded-lg shadow-xl p-2 px-8"
+                onClick={() => {
+                  handleFileUpload();
+                  setInitialLayoutApplied(true);
+                  fitView();
+                }}
+              >
+                Upload
               </button>
             </div>
           </Panel>
