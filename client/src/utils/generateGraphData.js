@@ -11,7 +11,7 @@ export const generateGraphData = (
 
   const currentNode = {
     id: nodeId,
-    position: { x: depth * 10, y: index * 20 },
+    position: { x: depth * 0, y: index * 0 },
     data: { label: node.name },
   };
   if (parentId) {
@@ -25,6 +25,21 @@ export const generateGraphData = (
   }
 
   nodes.push(currentNode);
+
+  if (node.children) {
+    for (let i = 0; i < node.children.length; i++) {
+      const child = node.children[i];
+      const { nodes: childNodes, edges: childEdges } = generateGraphData(
+        child,
+        nodeId,
+        depth + 1,
+        i
+      );
+      nodes.push(...childNodes);
+      edges.push(...childEdges);
+    }
+  }
+
   console.log(nodes, edges);
   return { nodes, edges };
 };

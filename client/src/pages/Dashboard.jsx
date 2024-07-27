@@ -26,7 +26,7 @@ const LayoutFlow = () => {
   const fetchNodes = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:8000/folder/directory-structure`,
+        `http://localhost:9000/folder/directory-structure`,
         {
           directoryPath: path,
           ignoreFolders: ignoreFolders,
@@ -37,8 +37,6 @@ const LayoutFlow = () => {
       setNodes(nodes);
       setEdges(edges);
       fitView;
-
-      console.log(data);
     } catch (error) {
       console.error(`Failed to fetch URL details: ${error}`);
     }
