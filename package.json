@@ -1,0 +1,19 @@
+{
+  "name": "nexus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:client":"cd client && pnpm dev",
+    "start:server":"cd server && pnpm dev",
+    "dev": "concurrently \"pnpm start:server\" \"pnpm start:client\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "tsx": "^4.16.2"
+  }
+}
