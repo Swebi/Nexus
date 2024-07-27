@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@types/body-parser": "^1.19.5",
+    "child_process": "^1.0.2",
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "helmet": "^7.1.0",
