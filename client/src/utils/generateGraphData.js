@@ -1,3 +1,5 @@
+import { getColor } from "./getColor";
+
 export const generateGraphData = (
   node,
   parentId = null,
@@ -13,6 +15,7 @@ export const generateGraphData = (
     id: nodeId,
     position: { x: depth * 0, y: index * 0 },
     data: { label: node.name },
+    style: { backgroundColor: getColor(depth) },
   };
   if (parentId) {
     currentNode.parentId = parentId;
