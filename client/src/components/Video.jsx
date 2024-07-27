@@ -6,7 +6,7 @@ import { copy } from "../utils/copyClipboard";
 function Video(props) {
   return (
     <div className=" flex flex-col items-center justify-center mt-16">
-      <video playsInline loop className="border rounded-2xl">
+      <video playsInline autoPlay muted loop className="border rounded-2xl">
         <source src={samplevideo} type="video/mp4" />
       </video>
 

@@ -1,5 +1,4 @@
-import Dagre from "@dagrejs/dagre";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import {
   ReactFlow,
   ReactFlowProvider,
@@ -11,42 +10,31 @@ import {
   useReactFlow,
 } from "@xyflow/react";
 
+import axios from "axios";
 import { initialNodes, initialEdges } from "../data/nodes-edges.js";
 import "@xyflow/react/dist/style.css";
-
-const getLayoutedElements = (nodes, edges, options) => {
-  const g = new Dagre.graphlib.Graph().setDefaultEdgeLabel(() => ({}));
-  g.setGraph({ rankdir: options.direction });
-
-  edges.forEach((edge) => g.setEdge(edge.source, edge.target));
-  nodes.forEach((node) =>
-    g.setNode(node.id, {
-      ...node,
-      width: node.measured?.width ?? 0,
-      height: node.measured?.height ?? 0,
-    })
-  );
-
-  Dagre.layout(g);
-
-  return {
-    nodes: nodes.map((node) => {
-      const position = g.node(node.id);
-      // We are shifting the dagre node position (anchor=center center) to the top left
-      // so it matches the React Flow node anchor point (top left).
-      const x = position.x - (node.measured?.width ?? 0) / 2;
-      const y = position.y - (node.measured?.height ?? 0) / 2;
-
-      return { ...node, position: { x, y } };
-    }),
-    edges,
-  };
-};
+import { getLayoutedElements } from "../utils/getLayoutedElements.js";
 
 const LayoutFlow = () => {
   const { fitView } = useReactFlow();
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+
+  const fetchNodes = async () => {
+    try {
+      const response = await axios.post(
+        `http://localhost:8000/folder/directory-structure`,
+        {
+          directoryPath: "/Users/suhayb/code/breve",
+          ignoreFolders: ["node_modules", ".git"],
+        }
+      );
+      const data = response.data.structure;
+      console.log(data);
+    } catch (error) {
+      console.error(`Failed to fetch URL details: ${error}`);
+    }
+  };
 
   const onLayout = useCallback(
     (direction) => {
@@ -62,6 +50,10 @@ const LayoutFlow = () => {
     },
     [nodes, edges]
   );
+
+  useEffect(() => {
+    fetchNodes();
+  }, []);
 
   return (
     <div className="w-screen h-screen">
@@ -86,6 +78,8 @@ const LayoutFlow = () => {
             horizontal layout
           </button>
         </Panel>
+
+
         <Background />
         <Controls />
       </ReactFlow>
