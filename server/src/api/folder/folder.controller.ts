@@ -12,9 +12,13 @@ export const handleDirectoryStructure = async (
   res: Response,
   next: NextFunction,
 ) => {
-  const { directoryPath } = req.body;
+  const { directoryPath, ignoreFolders, ignoreFiles } = req.body;
   try {
-    const structure = await getDirectoryStructure(directoryPath);
+    const structure = await getDirectoryStructure(
+      directoryPath,
+      ignoreFolders,
+      ignoreFiles,
+    );
     res.status(200).json({
       success: true,
       message: MESSAGES.DIRECTORY_SUCCESS,

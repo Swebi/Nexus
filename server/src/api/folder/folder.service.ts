@@ -27,23 +27,27 @@ export async function getDirectoryStructure(
 
   if (info.type === 'directory') {
     const children = await readdir(dirPath);
+    const filteredChildren = await Promise.all(
+      children.map(async child => {
+        const childPath = path.join(dirPath, child);
+        const childStats = await stat(childPath);
+        if (childStats.isDirectory()) {
+          return !ignoreFolders.includes(child) ? child : null;
+        }
+        return !ignoreFiles.includes(child) ? child : null;
+      }),
+    );
+    const validFiles = filteredChildren.filter(
+      child => child !== null,
+    ) as string[];
     info.children = await Promise.all(
-      children
-        .filter(async child => {
-          const childPath = path.join(dirPath, child);
-          const childStats = await stat(childPath);
-          if (childStats.isDirectory()) {
-            return !ignoreFolders.includes(child);
-          }
-          return !ignoreFiles.includes(child);
-        })
-        .map(async child =>
-          getDirectoryStructure(
-            path.join(dirPath, child),
-            ignoreFolders,
-            ignoreFiles,
-          ),
+      validFiles.map(child =>
+        getDirectoryStructure(
+          path.join(dirPath, child),
+          ignoreFolders,
+          ignoreFiles,
         ),
+      ),
     );
     info.size = info.children.reduce((total, child) => total + child.size, 0);
   } else {
