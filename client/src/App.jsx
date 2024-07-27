@@ -2,11 +2,12 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Flow from "./components/Flow";
+import Video from "./components/Video";
 function App() {
   return (
     <div className="h-screen w-screen overflow-x-hidden ">
       <Navbar logoName="Nexus" buttonText="About" />
-      <div className="flex h-full justify-center items-center   border">
+      <div className="flex h-full justify-center items-center ">
         <Hero
           heading1="Wire Your Ideas with "
           heading2="Nexus"
@@ -16,6 +17,7 @@ function App() {
         />
         <Flow className="w-3/5 h-full" />
       </div>
+      <Video gitrepo="git clone https://github.com/Swebi/Nexus.git" />
     </div>
   );
 }
