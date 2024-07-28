@@ -12,7 +12,7 @@ import {
 import { FaDownload } from "react-icons/fa6";
 import { RiFlowChart } from "react-icons/ri";
 import { IoReturnDownForward } from "react-icons/io5";
-import { IoCloseSharp } from "react-icons/io5";
+import { FaUpload } from "react-icons/fa6";
 
 import {
   Description,
@@ -196,18 +196,36 @@ const LayoutFlow = () => {
               >
                 Start
               </button>
-              <input type="file" onChange={handleFileChange} accept=".json" />
-
-              <button
-                className="text-2xl font-normal border rounded-lg shadow-xl p-2 px-8"
-                onClick={() => {
-                  handleFileUpload();
-                  setInitialLayoutApplied(true);
-                  fitView();
-                }}
-              >
-                Upload
-              </button>
+              <div className="flex items-center">
+                <label
+                  htmlFor="file-upload"
+                  className="cursor-pointer bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600"
+                >
+                  Import
+                </label>
+                <input
+                  id="file-upload"
+                  type="file"
+                  onChange={(e) => {
+                    handleFileChange(e);
+                  }}
+                  className="hidden"
+                  accept=".json"
+                />
+                <span className="ml-3 text-gray-700">
+                  {file ? file.name : ""}
+                </span>
+                <button
+                  className="text-xl  cursor-pointer bg-blue-500 hover:bg-blue-600 text-white font-semibold  border rounded-lg shadow-xl py-2.5 px-5"
+                  onClick={() => {
+                    handleFileUpload();
+                    setInitialLayoutApplied(true);
+                    fitView();
+                  }}
+                >
+                  <IoReturnDownForward />
+                </button>
+              </div>
             </div>
           </Panel>
         )}
@@ -244,6 +262,7 @@ const LayoutFlow = () => {
               <div className="flex w-full justify-between">
                 <DialogTitle className="font-bold">Add Details</DialogTitle>
                 <IoReturnDownForward
+                  className="text-xl"
                   onClick={(e) => {
                     handleTextSubmit(e);
                     setCustomText("");
