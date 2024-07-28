@@ -253,6 +253,27 @@ const LayoutFlow = () => {
             </div>
           </Panel>
         )}
+        {selectedNode && (
+          <Panel
+            position="top-right"
+            className="flex flex-col justify-start items-end gap-3 border p-5 w-[20vw] max-h-[40vh] rounded-xl shadow-lg bg-white"
+          >
+            <p>{selectedNode.data.label}</p>
+            <p>Details: </p>
+            <p className="text-right overflow-y-scroll max-h-fit max-w-fit">
+              {selectedNode.data.text}
+            </p>
+          </Panel>
+        )}
+
+        {selectedNode && (
+          <Panel
+            position="bottom-right"
+            className="flex flex-col gap-3 m-8 border px-5 py-3 rounded-xl shadow-lg bg-white "
+          >
+            <button onClick={() => setIsOpen(true)}>Add Details</button>
+          </Panel>
+        )}
         <Background />
         <Controls />
         <Dialog
