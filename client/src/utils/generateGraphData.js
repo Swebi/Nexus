@@ -14,8 +14,9 @@ export const generateGraphData = (
   const currentNode = {
     id: nodeId,
     position: { x: depth * 0, y: index * 0 },
-    data: { label: node.name },
+    data: { label: node.name, text: "" },
     style: { backgroundColor: getColor(depth) },
+    className: "rounded-xl",
   };
   if (parentId) {
     currentNode.parentId = parentId;
