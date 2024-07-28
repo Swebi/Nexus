@@ -2,6 +2,9 @@
 
 <p id="description">Welcome to the Nexus Repository. Nexus is a powerful solution for visualizing and managing complex project structures. By providing a clear and interactive overview of project components and their relationships, this tool enhances transparency, communication, and decision-making, ultimately leading to more successful and efficient project execution.</p>
 
+## Demo Video
+https://youtu.be/8McLDcL-MpQ
+
 ## Features
 
 - [x] User can give their local folder path to get visualisations.
@@ -46,4 +49,14 @@ This project makes use of the following libraries:
 - [React-Flow](https://reactflow.dev/) - A customizable React component for building node-based editors and interactive diagrams
 - [DagreJS](https://www.npmjs.com/package/dagrejs)- A Library that generates layout
 - [HeadlessUI](https://headlessui.com/) - Completely unstyled, fully accessible UI components, designed to integrate beautifully with Tailwind CSS.
-- [FileSaver](https://www.npmjs.com/package/file-saver) - FileSaver.js is the solution to saving files on the client-side, and is perfect for web apps that generates files on the client,
+- [FileSaver](https://www.npmjs.com/package/file-saver) - FileSaver.js is the solution to saving files on the client-side, and is perfect for web apps that generates files on the client
+- [pnpm](https://pnpm.io/) - Fast Disk Space Efficient Package Manager.
+
+## Future Implementations
+- [x] Integration of CI/CD tools like GitHub.
+- [x] Integrate LLM for cool explanation and understanding
+
+## Challenges Faced
+- [x] Making the recursive function for the generation of nodes.
+- [x] Making the service functions for the backend and its clean implementation
+- [x] Implementing pnpm workspaces for running client and server together
