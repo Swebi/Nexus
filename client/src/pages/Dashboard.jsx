@@ -12,8 +12,7 @@ import {
 import { FaDownload } from "react-icons/fa6";
 import { RiFlowChart } from "react-icons/ri";
 import { IoReturnDownForward } from "react-icons/io5";
-import { FaUpload } from "react-icons/fa6";
-
+import Select from "react-select";
 import {
   Description,
   Dialog,
@@ -27,6 +26,7 @@ import "@xyflow/react/dist/style.css";
 import { getLayoutedElements } from "../utils/getLayoutedElements.js";
 import { generateGraphData } from "../utils/generateGraphData.js";
 import { saveLayout } from "../utils/saveLayout.js";
+import { commonFolders } from "../data/commonFolders.js";
 const LayoutFlow = () => {
   const { fitView } = useReactFlow();
 
@@ -38,6 +38,12 @@ const LayoutFlow = () => {
   const [ignoreFolders, setIgnoreFolders] = useState(
     '[".node_modules", ".git"]'
   );
+
+  const handleIgnoreChange = (selectedOptions) => {
+    setIgnoreFolders(
+      selectedOptions ? selectedOptions.map((option) => option.value) : []
+    );
+  };
 
   const [file, setFile] = useState(null);
 
@@ -146,13 +152,13 @@ const LayoutFlow = () => {
             onClick={() => saveLayout({ nodes, edges })}
             className="bg-white rounded-md border p-3 shadow-md"
           >
-            <FaDownload />
+            <FaDownload className="text-2xl" />
           </button>
           <button
             onClick={() => onLayout("LR")}
             className="bg-white rounded-md border p-3 shadow-md"
           >
-            <RiFlowChart />
+            <RiFlowChart className="text-2xl" />
           </button>
         </Panel>
 
@@ -160,10 +166,10 @@ const LayoutFlow = () => {
           ""
         ) : (
           <Panel className="flex flex-col justify-center items-center w-screen h-screen">
-            <div className="w-[65vw] h-[75vh] mb-[5vh] flex flex-col gap-6 justify-center items-center bg-white border rounded-2xl shadow-2xl">
+            <div className=" w-[65vw] h-[75vh] mb-[5vh] flex flex-col gap-6 justify-center items-center border rounded-2xl shadow-2xl bg-gradient-to-br from-white to-[#f4f9ff] ">
               <h1 className="text-7xl font-semibold">Nexus</h1>
               <div className="flex gap-3 justify-start items-center w-1/2">
-                <h1>Path</h1>
+                <h1 className="text-lg  whitespace-nowrap"> Path</h1>
                 <input
                   type="text"
                   className="border py-2 px-4 text-lg outline-none w-full"
@@ -175,15 +181,17 @@ const LayoutFlow = () => {
                 />
               </div>
               <div className="flex gap-3 justify-start items-center w-1/2">
-                <h1 className="text-lg  whitespace-nowrap"> Ignore Folders</h1>
-                <input
-                  type="text"
-                  className="border py-2 px-4 text-lg outline-none w-full tracking-wider"
-                  placeholder='[".node_modules",".git"]'
-                  value={ignoreFolders}
-                  onChange={(e) => {
-                    setIgnoreFolders(e.target.value);
-                  }}
+                <Select
+                  isMulti
+                  name="ignoreFolders"
+                  options={commonFolders}
+                  className="w-full"
+                  classNamePrefix="select"
+                  value={commonFolders.filter((option) =>
+                    ignoreFolders.includes(option.value)
+                  )}
+                  onChange={handleIgnoreChange}
+                  placeholder="Select folders to ignore"
                 />
               </div>
 
