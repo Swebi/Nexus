@@ -15,8 +15,10 @@ function Navbar({ logoName }) {
       </div>
       <div className="flex items-center">
         <div className="flex items-center justify-center bg-[#000000] font-light px-5 py-2 rounded-xl">
-          <FaGithub size={20} color="white" />
-          <button className="ml-2 text-white">GitHub</button>
+          <a href="https://github.com/Swebi/Nexus">
+            <FaGithub size={20} color="white" />
+            <button className="ml-2 text-white">GitHub</button>
+          </a>
         </div>
       </div>
     </div>
