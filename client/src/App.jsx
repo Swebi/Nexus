@@ -6,10 +6,10 @@ import Video from "./components/Video";
 function App() {
   return (
     <div className="h-screen w-screen overflow-x-hidden ">
-      <Navbar logoName="Nexus" buttonText="About" />
+      <Navbar logoName="Nexus" />
       <div className="flex h-full justify-center items-center ">
         <Hero
-          heading1="Wire Your Ideas with "
+          heading1="Wire Your Projects with "
           heading2="Nexus"
           description="A tool for visualizing and navigating complex project structures and files."
           buttonText="Get Started"

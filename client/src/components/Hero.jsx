@@ -5,7 +5,7 @@ function Hero({ buttonText, heading1, heading2, description }) {
     <div className=" h-full flex flex-col mx-12 justify-center items-center ">
       <div>
         <span className="font-sans font-semibold  tracking-tighter text-6xl">
-          {heading1} <span className="text-[#FF338F]">{heading2}</span>
+          {heading1} <span className="text-[#0a8cf7]">{heading2}</span>
         </span>
       </div>
       <div className="mt-3">
@@ -13,7 +13,7 @@ function Hero({ buttonText, heading1, heading2, description }) {
       </div>
       <div className="mt-3 self-start">
         <a href="/dashboard">
-          <button className="bg-[#FF338F] text-white poppins-medium px-7 py-2 rounded-full shadow-lg">
+          <button className="bg-[#0a8cf7] text-white poppins-medium px-7 py-2 rounded-xl shadow-lg">
             {buttonText}
           </button>
         </a>
