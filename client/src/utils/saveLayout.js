@@ -6,7 +6,7 @@ export const saveLayout = ({ nodes, edges }) => {
     nodes: nodes,
     edges: edges,
   };
-  const fileName = "layout.json";
+  const fileName = "nexusconfig.json";
 
   // Create a blob of the data
   const fileToSave = new Blob([JSON.stringify(data, null, 2)], {

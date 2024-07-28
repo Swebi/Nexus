@@ -27,6 +27,7 @@ import { getLayoutedElements } from "../utils/getLayoutedElements.js";
 import { generateGraphData } from "../utils/generateGraphData.js";
 import { saveLayout } from "../utils/saveLayout.js";
 import { commonFolders } from "../data/commonFolders.js";
+import Spinner from "../components/Spinner.jsx";
 const LayoutFlow = () => {
   const { fitView } = useReactFlow();
 
@@ -34,6 +35,8 @@ const LayoutFlow = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
   const [initialLayoutApplied, setInitialLayoutApplied] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
   const [path, setPath] = useState("/Users/suhayb/code/breve");
   const [ignoreFolders, setIgnoreFolders] = useState(
     '[".node_modules", ".git"]'
@@ -161,15 +164,28 @@ const LayoutFlow = () => {
             <RiFlowChart className="text-2xl" />
           </button>
         </Panel>
-
         {initialLayoutApplied ? (
-          ""
+          isLoading ? (
+            <Panel className="flex flex-col justify-center items-center w-screen h-screen">
+              <div className="w-[65vw] h-[75vh] mb-[5vh] flex flex-col gap-6 justify-center items-center border rounded-2xl shadow-2xl bg-gradient-to-br from-white to-[#f4f9ff]">
+                <button
+                  className="text-2xl font-normal border rounded-lg shadow-xl p-2 px-8 bg-white"
+                  onClick={() => {
+                    onLayout("LR");
+                    setIsLoading(false);
+                  }}
+                >
+                  Go To Dashboard
+                </button>
+              </div>
+            </Panel>
+          ) : null
         ) : (
           <Panel className="flex flex-col justify-center items-center w-screen h-screen">
-            <div className=" w-[65vw] h-[75vh] mb-[5vh] flex flex-col gap-6 justify-center items-center border rounded-2xl shadow-2xl bg-gradient-to-br from-white to-[#f4f9ff] ">
+            <div className="w-[65vw] h-[75vh] mb-[5vh] flex flex-col gap-6 justify-center items-center border rounded-2xl shadow-2xl bg-gradient-to-br from-white to-[#f4f9ff]">
               <h1 className="text-7xl font-semibold">Nexus</h1>
               <div className="flex gap-3 justify-start items-center w-1/2">
-                <h1 className="text-lg  whitespace-nowrap"> Path</h1>
+                <h1 className="text-lg whitespace-nowrap">Path</h1>
                 <input
                   type="text"
                   className="border py-2 px-4 text-lg outline-none w-full"
@@ -194,11 +210,11 @@ const LayoutFlow = () => {
                   placeholder="Select folders to ignore"
                 />
               </div>
-
               <button
                 className="text-2xl font-normal border rounded-lg shadow-xl p-2 px-8 bg-white"
                 onClick={() => {
                   fetchNodes();
+
                   setInitialLayoutApplied(true);
                 }}
               >
@@ -224,7 +240,7 @@ const LayoutFlow = () => {
                   {file ? file.name : ""}
                 </span>
                 <button
-                  className="text-xl  cursor-pointer bg-blue-500 hover:bg-blue-600 text-white font-semibold  border rounded-lg shadow-xl py-2.5 px-5"
+                  className="text-xl cursor-pointer bg-blue-500 hover:bg-blue-600 text-white font-semibold border rounded-lg shadow-xl py-2.5 px-5"
                   onClick={() => {
                     handleFileUpload();
                     setInitialLayoutApplied(true);
@@ -235,27 +251,6 @@ const LayoutFlow = () => {
                 </button>
               </div>
             </div>
-          </Panel>
-        )}
-        {selectedNode && (
-          <Panel
-            position="top-right"
-            className="flex flex-col justify-start items-end gap-3 border p-5 w-[20vw] max-h-[40vh] rounded-xl shadow-lg bg-white"
-          >
-            <p>{selectedNode.data.label}</p>
-            <p>Details: </p>
-            <p className="text-right overflow-y-scroll max-h-fit max-w-fit">
-              {selectedNode.data.text}
-            </p>
-          </Panel>
-        )}
-
-        {selectedNode && (
-          <Panel
-            position="bottom-right"
-            className="flex flex-col gap-3 m-8 border px-5 py-3 rounded-xl shadow-lg bg-white "
-          >
-            <button onClick={() => setIsOpen(true)}>Add Details</button>
           </Panel>
         )}
         <Background />
