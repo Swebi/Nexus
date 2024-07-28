@@ -185,7 +185,7 @@ const LayoutFlow = () => {
                   isMulti
                   name="ignoreFolders"
                   options={commonFolders}
-                  className="w-full"
+                  className="w-full outline-none"
                   classNamePrefix="select"
                   value={commonFolders.filter((option) =>
                     ignoreFolders.includes(option.value)
@@ -196,13 +196,13 @@ const LayoutFlow = () => {
               </div>
 
               <button
-                className="text-2xl font-normal border rounded-lg shadow-xl p-2 px-8"
+                className="text-2xl font-normal border rounded-lg shadow-xl p-2 px-8 bg-white"
                 onClick={() => {
                   fetchNodes();
                   setInitialLayoutApplied(true);
                 }}
               >
-                Start
+                Generate
               </button>
               <div className="flex items-center">
                 <label
