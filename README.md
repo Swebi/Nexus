@@ -5,7 +5,7 @@
 ## Features
 
 - [x] User can give their local folder path to get visualisations.
-- [x] User can visualise their repositories by means of children and nodes.
+- [x] User can visualise their repositories using the dynamic flow chart .
 - [x] Use of various colours to represent the hierarchy of the directories and the files
 - [x] User can change the structure of the code to generate the JSON File.
 - [x] The User can specify which all files or folders he wants to omit from the visualisation.
@@ -44,3 +44,6 @@ This project makes use of the following libraries:
 
 - [Biome](https://biomejs.dev/) - A formatter which is better used for linting and formatting purposes
 - [React-Flow](https://reactflow.dev/) - A customizable React component for building node-based editors and interactive diagrams
+- [DagreJS](https://www.npmjs.com/package/dagrejs)- A Library that generates layout
+- [HeadlessUI](https://headlessui.com/) - Completely unstyled, fully accessible UI components, designed to integrate beautifully with Tailwind CSS.
+- [FileSaver](https://www.npmjs.com/package/file-saver) - FileSaver.js is the solution to saving files on the client-side, and is perfect for web apps that generates files on the client,
