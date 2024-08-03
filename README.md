@@ -1,9 +1,13 @@
 <h1 align="center" id="title">Nexus</h1>
 
-<p id="description">Welcome to the Nexus Repository. Nexus is a powerful solution for visualizing and managing complex project structures. By providing a clear and interactive overview of project components and their relationships, this tool enhances transparency, communication, and decision-making, ultimately leading to more successful and efficient project execution.</p>
+<p id="description">Nexus is a powerful solution for visualizing and managing complex project structures. By providing a clear and interactive overview of project components and their relationships, this tool enhances transparency, communication, and decision-making, ultimately leading to more successful and efficient project execution.</p>
+
+![image](https://github.com/user-attachments/assets/5f088e71-fb2f-4ca3-b0d7-ba709e8ee302)
+
 
 ## Demo Video
-https://youtu.be/8McLDcL-MpQ
+https://youtu.be/8McLDcL-MpQ </br>
+Built at FOSS Hack 2024
 
 ## Features
 
